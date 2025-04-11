@@ -156,5 +156,18 @@ Methode testet das Einfügen von Dezimalpunkten
             System.out.println("Test fehlgeschlagen: Erwartet \"" + expected + "\", aber bekam \"" + actual + "\".");
         }
     }
+    public void inversiontest(){
+        pressDigitKey(0);
+        pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = readScreen();
+
+        if(expected.equals(actual)){
+            System.out.println("Test bestanden: Division durch 0.");
+        }else{
+            System.out.println("Test fehlgeschlagen: Erwartet /Error/ aber bekam " + actual + " .");
+        }
+    }
 }
 
