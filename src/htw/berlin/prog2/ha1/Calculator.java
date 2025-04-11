@@ -14,6 +14,7 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -122,6 +123,7 @@ public class Calculator {
      */
     public void pressEqualsKey() {
 
+
         var result = switch (latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
@@ -134,8 +136,9 @@ public class Calculator {
         if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
         if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
-/*
-Methode testet das Einfügen von Dezimalpunkten
+/**
+ * grüner Test
+ * Methode testet das Einfügen von Dezimalpunkten
  */
     public void greenTest() {
         // Erstelle eine Instanz des Taschenrechners
@@ -157,6 +160,11 @@ Methode testet das Einfügen von Dezimalpunkten
             System.out.println("Test fehlgeschlagen: Erwartet \"" + expected + "\", aber bekam \"" + actual + "\".");
         }
     }
+
+    /**
+     * erster roter Test
+     * Methode testet Inversion mit 0
+     */
     public void inversionTest(){
         pressDigitKey(0);
         pressUnaryOperationKey("1/x");
@@ -170,6 +178,11 @@ Methode testet das Einfügen von Dezimalpunkten
             System.out.println("Test fehlgeschlagen: Erwartet /Error/ aber bekam " + actual + " .");
         }
     }
+
+    /**
+     * zweiter roter Test
+     * Methode testet wiederholte ist-gleich Rechnung
+     */
     public void repeatedCalculation(){
         pressDigitKey(4);
         pressBinaryOperationKey("+");
