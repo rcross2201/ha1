@@ -156,7 +156,7 @@ Methode testet das Einfügen von Dezimalpunkten
             System.out.println("Test fehlgeschlagen: Erwartet \"" + expected + "\", aber bekam \"" + actual + "\".");
         }
     }
-    public void inversiontest(){
+    public void inversionTest(){
         pressDigitKey(0);
         pressUnaryOperationKey("1/x");
 
@@ -168,6 +168,22 @@ Methode testet das Einfügen von Dezimalpunkten
         }else{
             System.out.println("Test fehlgeschlagen: Erwartet /Error/ aber bekam " + actual + " .");
         }
+    }
+    public void repeatedCalculation(){
+        pressDigitKey(4);
+        pressBinaryOperationKey("+");
+        pressDigitKey(3);
+        pressEqualsKey();
+        pressEqualsKey();
+
+        String expected = "10";
+        String actual = readScreen();
+
+                if(expected.equals(actual)){
+                    System.out.println ("Test bestanden: Bildschirm zeigt \"" + actual + "\" wie erwartet.");
+                }else{
+                    System.out.println("Test fehlgeschlagen: Erwartet \"" + expected + "\", aber bekam \"" + actual + "\".");
+                }
     }
 }
 
