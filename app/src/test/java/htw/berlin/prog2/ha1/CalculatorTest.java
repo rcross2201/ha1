@@ -91,7 +91,7 @@ class CalculatorTest {
      @Test
      @DisplayName("Should test the insertion of decimal points.")
     public void greenTest() {
-        
+
        Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
@@ -103,6 +103,17 @@ class CalculatorTest {
 
         String actual = readScreen();
 
+
+       assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName ("Should test inversion with 0.")
+    public void inversionTest(){
+        pressDigitKey(0);
+        pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = readScreen();
 
        assertEquals(expected, actual);
     }
