@@ -117,6 +117,20 @@ class CalculatorTest {
 
        assertEquals(expected, actual);
     }
+     @Test
+    @DisplayName ("Should test repeated equals calculations.")
+    public void repeatedCalculation(){
+        pressDigitKey(4);
+        pressBinaryOperationKey("+");
+        pressDigitKey(3);
+        pressEqualsKey();
+        pressEqualsKey();
+
+        String expected = "10";
+        String actual = readScreen();
+
+      assertEquals(expected,actual);
+    }
     //TODO hier weitere Tests erstellen
 }
 
