@@ -88,7 +88,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+     @Test
+     @DisplayName("Should test the insertion of decimal points.")
+    public void greenTest() {
+        
+       Calculator calc = new Calculator();
 
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+
+
+        String expected = "5.";
+
+
+        String actual = readScreen();
+
+
+       assertEquals(expected, actual);
+    }
     //TODO hier weitere Tests erstellen
 }
 
