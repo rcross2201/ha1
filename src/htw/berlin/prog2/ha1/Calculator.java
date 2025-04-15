@@ -14,7 +14,9 @@ public class Calculator {
 
     private String latestOperation = "";
 
-    
+    private double lastvalue;
+
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -122,42 +124,50 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        double a = Double.parseDouble(screen);
+
+        if (!latestOperation.isEmpty()) {
+
+            if (lastvalue == 0.0 || latestValue != a) {
+                lastvalue = a;
+            }
+        }
 
 
         var result = switch (latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "+" -> latestValue + lastvalue;
+            case "-" -> latestValue - lastvalue;
+            case "x" -> latestValue * lastvalue;
+            case "/" -> latestValue / lastvalue;
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+        screen = Double.toString(result); //Die Zeile über Chat GPT ermittelt
         if (screen.equals("Infinity")) screen = "Error";
         if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
         if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            latestValue = result;
     }
 /**
  * grüner Test
  * Methode testet das Einfügen von Dezimalpunkten
  */
     public void greenTest() {
-        // Erstelle eine Instanz des Taschenrechners
 
-        // Drücke die Ziffer 5 und dann den Dezimalpunkt
+
         pressDigitKey(5);
         pressDotKey();
 
-        // Erwarteter Wert
+
         String expected = "5.";
 
-        // Tatsächlicher Wert (vom Bildschirm des Rechners)
+
         String actual = readScreen();
 
-        // Vergleiche den erwarteten und tatsächlichen Wert
+
         if (expected.equals(actual)) {
-            System.out.println("Test bestanden: Bildschirm zeigt \"" + actual + "\" wie erwartet.");
+            System.out.println("Test bestanden: Bildschirm zeigt " + actual + " wie erwartet.");
         } else {
-            System.out.println("Test fehlgeschlagen: Erwartet \"" + expected + "\", aber bekam \"" + actual + "\".");
+            System.out.println("Test fehlgeschlagen: Erwartet " + expected + ", aber bekam " + actual + ".");
         }
     }
 
@@ -192,7 +202,6 @@ public class Calculator {
 
         String expected = "10";
         String actual = readScreen();
-
                 if(expected.equals(actual)){
                     System.out.println ("Test bestanden: Bildschirm zeigt \"" + actual + "\" wie erwartet.");
                 }else{
